@@ -1,0 +1,182 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "Playfair Display";
+  src: url("/assets/fonts/PlayfairDisplay.woff2") format("woff2");
+  font-weight: 400 800;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "DM Sans";
+  src: url("/assets/fonts/DMSans.woff2") format("woff2");
+  font-weight: 400 700;
+  font-display: swap;
+}
+
+@layer base {
+  :root {
+    --radius: 0.75rem;
+
+    /* Brand colors in OKLCH */
+    --navy: 0.18 0.05 243;
+    --navy-dark: 0.13 0.04 243;
+    --gold: 0.715 0.118 76;
+    --gold-light: 0.82 0.09 76;
+    --white: 0.97 0.005 240;
+    --muted-text: 0.82 0.018 240;
+
+    /* Semantic tokens (dark theme as base) */
+    --background: 0.18 0.05 243;
+    --foreground: 0.97 0.005 240;
+    --card: 0.18 0.05 243;
+    --card-foreground: 0.97 0.005 240;
+    --popover: 0.2 0.048 243;
+    --popover-foreground: 0.97 0.005 240;
+    --primary: 0.715 0.118 76;
+    --primary-foreground: 0.18 0.05 243;
+    --secondary: 0.25 0.048 243;
+    --secondary-foreground: 0.97 0.005 240;
+    --muted: 0.25 0.048 243;
+    --muted-foreground: 0.82 0.018 240;
+    --accent: 0.715 0.118 76;
+    --accent-foreground: 0.18 0.05 243;
+    --destructive: 0.577 0.245 27.325;
+    --destructive-foreground: 0.985 0 0;
+    --border: 0.715 0.118 76 / 20%;
+    --input: 0.25 0.048 243;
+    --ring: 0.715 0.118 76;
+    --chart-1: 0.715 0.118 76;
+    --chart-2: 0.6 0.118 184.704;
+    --chart-3: 0.398 0.07 227.392;
+    --chart-4: 0.828 0.189 84.429;
+    --chart-5: 0.769 0.188 70.08;
+    --sidebar: 0.13 0.04 243;
+    --sidebar-foreground: 0.97 0.005 240;
+    --sidebar-primary: 0.715 0.118 76;
+    --sidebar-primary-foreground: 0.18 0.05 243;
+    --sidebar-accent: 0.25 0.048 243;
+    --sidebar-accent-foreground: 0.97 0.005 240;
+    --sidebar-border: 0.715 0.118 76 / 20%;
+    --sidebar-ring: 0.715 0.118 76;
+  }
+
+  * {
+    @apply border-border;
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    color-scheme: dark;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: "DM Sans", sans-serif;
+    background-color: #0d1f3c;
+    color: #eef2f7;
+    overflow-x: hidden;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: "Playfair Display", serif;
+  }
+}
+
+@layer utilities {
+  .glass-card {
+    background: rgba(255, 255, 255, 0.07);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(201, 168, 76, 0.3);
+    border-radius: 16px;
+  }
+
+  .glass-card-strong {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(201, 168, 76, 0.4);
+    border-radius: 16px;
+  }
+
+  .gold-text {
+    color: #c9a84c;
+  }
+
+  .gold-btn {
+    background-color: #c9a84c;
+    color: #0a1628;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    transition: all 0.2s ease;
+  }
+
+  .gold-btn:hover {
+    filter: brightness(1.15);
+    transform: translateY(-1px);
+    box-shadow: 0 8px 24px rgba(201, 168, 76, 0.4);
+  }
+
+  .reveal-on-scroll {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+
+  .reveal-on-scroll.revealed {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .section-heading {
+    font-family: "Playfair Display", serif;
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #f2f4f7;
+  }
+
+  .gold-divider {
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(90deg, #c9a84c, transparent);
+    margin: 1rem auto;
+  }
+
+  /* Awards Ticker */
+  .ticker-wrapper {
+    overflow: hidden;
+    white-space: nowrap;
+  }
+
+  .ticker-track {
+    display: inline-flex;
+    animation: ticker-scroll 30s linear infinite;
+  }
+
+  .ticker-item {
+    display: inline-block;
+    flex-shrink: 0;
+  }
+
+  @keyframes ticker-scroll {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+
+  .ticker-wrapper:hover .ticker-track {
+    animation-play-state: paused;
+  }
+}
